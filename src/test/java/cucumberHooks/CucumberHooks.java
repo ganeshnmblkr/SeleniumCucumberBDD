@@ -15,7 +15,6 @@ public class CucumberHooks {
     public void launchApplication() throws Exception {
         String browser = EnvironmentProperties.getEnvironmentProperties("browser");
         String appURL =EnvironmentProperties.getEnvironmentProperties("appURL");
-//        String appURL ="https://www.google.com/";
         DriverFactory.getInstance().setDriver( browserFactor.createBrowserInstance( browser ) );
         driver = DriverFactory.getInstance().getDriver();
         driver.manage().window().maximize();
