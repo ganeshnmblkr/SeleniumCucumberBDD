@@ -26,11 +26,8 @@ public class CucumberHooks {
         driver.get(appURL);
     }
     @After
-    public void tearDown() throws Exception {
-        boolean headlessMode = Boolean.parseBoolean( EnvironmentProperties.getEnvironmentProperties( "headless" ) );
-        if (!headlessMode ) {
+    public void tearDown() {
             DriverFactory.getInstance().closeBrowser();
         }
-    }
 }
 
