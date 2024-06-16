@@ -8,7 +8,6 @@ public class EnvironmentProperties {
     static Properties prop = new Properties();
 
     public static String getEnvironmentProperties( String key ) throws Exception {
-
         String propertyFilePath = System.getProperty( "user.dir" ) + "/src/test/resources/config.properties";
         FileInputStream fis = new FileInputStream( propertyFilePath );
         prop.load( fis );

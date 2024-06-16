@@ -5,7 +5,7 @@ Feature: Google Search Automation
     When user type search
     Then user should get the result
 
-
+  @smoke
   Scenario: Google Search Automation3434
     Given user opens browser
     When user type search

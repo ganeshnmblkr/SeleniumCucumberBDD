@@ -4,6 +4,8 @@ import org.openqa.selenium.WebDriver;
 
 public class DriverFactory {
 
+    private DriverFactory(){
+    }
     private static DriverFactory instance = new DriverFactory();
 
     public static DriverFactory getInstance() {
@@ -13,6 +15,7 @@ public class DriverFactory {
     ThreadLocal<WebDriver> driver = new ThreadLocal<WebDriver>();
 
     public WebDriver getDriver() {
+        System.out.println("Driver Instance "+driver.get());
         return driver.get();
     }
 
