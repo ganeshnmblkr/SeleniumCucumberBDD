@@ -24,8 +24,7 @@ public class DriverFactory {
     }
 
     public void closeBrowser() {
-        System.out.println("Closing Driver Instance "+driver.get());
         driver.get().close();
-//        driver.remove();
+        driver.remove();
     }
 }
