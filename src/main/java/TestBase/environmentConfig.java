@@ -11,15 +11,15 @@ public class environmentConfig {
     private String testEnvironment;
     private String testEnvURL;
     private String testDataEnv;
-    private HashMap<String, HashMap<String,String>> environmentdetails;
+    private HashMap<String, HashMap<String,String>> environmentDetails;
     public environmentConfig(){
-        environmentdetails = yamlReader("envConfig.yaml");
+        environmentDetails = yamlReader("envConfig.yaml");
     }
 
-    public void setEnvironmentdetails(){
-     testEnvironment=environmentdetails.get("environment").get( "name" );
-     testDataEnv=environmentdetails.get( "testDataEnv" ).get(testEnvironment);
-     testEnvURL=environmentdetails.get( "environmentURL" ).get(testEnvironment);
+    public void setenvironmentDetails(){
+     testEnvironment=environmentDetails.get("environment").get( "name" );
+     testDataEnv=environmentDetails.get( "testDataEnv" ).get(testEnvironment);
+     testEnvURL=environmentDetails.get( "environmentURL" ).get(testEnvironment);
     }
 
     public HashMap<String, HashMap<String,String>> yamlReader(String fileName){
