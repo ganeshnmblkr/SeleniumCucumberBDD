@@ -16,7 +16,7 @@ public class environmentConfig {
         environmentDetails = yamlReader("envConfig.yaml");
     }
 
-    public void setenvironmentDetails(){
+    public void setEnvironmentDetails(){
      testEnvironment=environmentDetails.get("environment").get( "name" );
      testDataEnv=environmentDetails.get( "testDataEnv" ).get(testEnvironment);
      testEnvURL=environmentDetails.get( "environmentURL" ).get(testEnvironment);

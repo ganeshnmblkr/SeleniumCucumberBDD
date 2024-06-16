@@ -16,7 +16,7 @@ public class CucumberHooks {
     @Before
     public void
     launchApplication() throws Exception {
-        envConfig.setenvironmentDetails();
+        envConfig.setEnvironmentDetails();
         String browser = EnvironmentProperties.getEnvironmentProperties("browser");
         String appURL =envConfig.getTestEnvURL();
         DriverFactory.getInstance().setDriver( browserFactor.createBrowserInstance( browser ) );
@@ -26,9 +26,11 @@ public class CucumberHooks {
         driver.get(appURL);
     }
     @After
-    public void tearDown() {
-        DriverFactory.getInstance().closeBrowser();
-        System.out.println("appURL:-Ganesh ");
+    public void tearDown() throws Exception {
+        boolean headlessMode = Boolean.parseBoolean( EnvironmentProperties.getEnvironmentProperties( "headless" ) );
+        if (!headlessMode ) {
+            DriverFactory.getInstance().closeBrowser();
+        }
     }
 }
 
