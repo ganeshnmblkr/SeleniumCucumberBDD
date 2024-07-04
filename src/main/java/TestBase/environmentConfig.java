@@ -11,8 +11,9 @@ public class environmentConfig {
     private String testEnvURL;
     private String testDataEnv;
     private HashMap<String, HashMap<String,String>> environmentDetails;
+    private HashMap<String, HashMap<String,String>> envTestData;
     public environmentConfig(){
-        environmentDetails = yamlReader("envConfig.yaml");
+        environmentDetails = yamlReader("Config","envConfig.yaml");
     }
 
     public void setEnvironmentDetails(){
@@ -21,9 +22,21 @@ public class environmentConfig {
      testEnvURL=environmentDetails.get( "environmentURL" ).get(testEnvironment);
     }
 
-    public HashMap<String, HashMap<String,String>> yamlReader(String fileName){
+    public void getTestData(){
+        envTestData = yamlReader("TestData","TestData.yaml");
+    }
 
-        File ymlFileReader= new File("src/test/resources/Features/"+fileName);
+    public String readTestDataByKey(String testDataEnv,String keyName){
+        if (keyName!=null ){
+            return  envTestData.get(keyName).get( testDataEnv );
+        }else{
+            return "inCorrect Key";
+        }
+    }
+    public HashMap<String, HashMap<String,String>> yamlReader(String sourceFolderName,String fileName){
+
+        File ymlFileReader= new File("src/test/resources/"+sourceFolderName+"/"+fileName);
+
         InputStream fis=null;
         try{
             fis=new FileInputStream(ymlFileReader);

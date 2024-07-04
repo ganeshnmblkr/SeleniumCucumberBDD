@@ -17,12 +17,14 @@ public class CucumberHooks {
     public void
     launchApplication() throws Exception {
         envConfig.setEnvironmentDetails();
+        envConfig.getTestData();
         String browser = EnvironmentProperties.getEnvironmentProperties("browser");
         String appURL =envConfig.getTestEnvURL();
         DriverFactory.getInstance().setDriver( browserFactor.createBrowserInstance( browser ) );
         driver = DriverFactory.getInstance().getDriver();
         driver.manage().window().maximize();
         System.out.println("appURL:- "+appURL);
+        System.out.println("UserName:- "+envConfig.readTestDataByKey( envConfig.getTestDataEnv() , "Valid User Name" ));
         driver.get(appURL);
     }
     @After
