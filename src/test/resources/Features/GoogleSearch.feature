@@ -1,5 +1,5 @@
 Feature: Google Search Automation
-
+  @smoke
   Scenario: Google Search Automation
     Given user opens browser
     When user type search

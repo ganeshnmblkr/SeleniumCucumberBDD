@@ -14,8 +14,7 @@ public class CucumberHooks {
     public WebDriver driver=null;
     public environmentConfig envConfig=new environmentConfig();
     @Before
-    public void
-    launchApplication() throws Exception {
+    public void launchApplication() throws Exception {
         envConfig.setEnvironmentDetails();
         envConfig.getTestData();
         String browser = EnvironmentProperties.getEnvironmentProperties("browser");

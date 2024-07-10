@@ -1,11 +1,14 @@
 package StepDefinitions;
 
 import io.cucumber.java.en.*;
+import pages.loginPage;
 
-public class GoogleSearchSteps {
+public class GoogleSearchSteps extends BaseSteps {
     @Given("user opens browser")
     public void user_opens_browser() {
-        System.out.println("Ganesh");
+        loginPage loginPage= new loginPage(getDriver());
+        System.out.println(loginPage.validateLoginPageTitle());
+//        System.out.println("Ganesh");
 //        WebDriver driver = new ChromeDriver();
 //        driver.get( "https://www.google.com/" );
     }
