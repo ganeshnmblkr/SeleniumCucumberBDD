@@ -1,0 +1,11 @@
+environment:
+  name: TestSite
+
+environmentURL:
+  TestSite: "https://rahulshettyacademy.com/client/"
+#  TestSite: "https://courses.rahulshettyacademy.com/"
+  Youtube: "https://www.youtube.com/"
+
+testDataEnv:
+  TestSite: sit
+  Youtube: svt

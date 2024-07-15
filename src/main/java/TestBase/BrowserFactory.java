@@ -3,6 +3,7 @@ package TestBase;
 import org.openqa.selenium.MutableCapabilities;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -14,14 +15,18 @@ import java.util.HashMap;
 public class BrowserFactory {
     public WebDriver createBrowserInstance( String browser ) throws Exception {
         String executionType = EnvironmentProperties.getEnvironmentProperties( "execution" );
+        boolean headlessMode = Boolean.parseBoolean( EnvironmentProperties.getEnvironmentProperties( "headless" ) );
         WebDriver driver = null;
         if ( executionType.equalsIgnoreCase( "local" ) ) {
+            System.setProperty("webdriver.chrome.silenOutput","true" );
             if ( browser.equalsIgnoreCase( "Edge" ) ) {
                 driver = new InternetExplorerDriver();
             } else if ( browser.equalsIgnoreCase( "Firefox" ) ) {
                 driver = new FirefoxDriver();
             } else {
-                driver = new ChromeDriver();
+                ChromeOptions options = new ChromeOptions();
+                options.addArguments("--headless=new");
+                driver = headlessMode?new ChromeDriver(options): new ChromeDriver();
             }
         } else if ( executionType.equalsIgnoreCase( "browserstack" ) ) {
             String browserstackUserName = EnvironmentProperties.getEnvironmentProperties( "browserstack.username" );

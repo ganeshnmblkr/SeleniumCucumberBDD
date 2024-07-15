@@ -12,23 +12,23 @@ public class CucumberHooks {
 
     BrowserFactory browserFactor = new BrowserFactory();
     public WebDriver driver=null;
-    public environmentConfig envConfig=new environmentConfig();
+    public static environmentConfig envConfig=new environmentConfig();
     @Before
-    public void
-    launchApplication() throws Exception {
-        envConfig.setenvironmentDetails();
+    public void launchApplication() throws Exception {
+        envConfig.setEnvironmentDetails();
+        envConfig.getTestData();
         String browser = EnvironmentProperties.getEnvironmentProperties("browser");
         String appURL =envConfig.getTestEnvURL();
         DriverFactory.getInstance().setDriver( browserFactor.createBrowserInstance( browser ) );
         driver = DriverFactory.getInstance().getDriver();
         driver.manage().window().maximize();
         System.out.println("appURL:- "+appURL);
+        System.out.println("UserName:- "+envConfig.readTestDataByKey( "Valid User Name" ));
         driver.get(appURL);
     }
     @After
     public void tearDown() {
-        DriverFactory.getInstance().closeBrowser();
-        System.out.println("appURL:-Ganesh ");
-    }
+            DriverFactory.getInstance().closeBrowser();
+        }
 }
 
