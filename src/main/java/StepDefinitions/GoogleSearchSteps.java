@@ -2,6 +2,8 @@ package StepDefinitions;
 
 import cucumberHooks.CucumberHooks;
 import io.cucumber.java.en.*;
+import org.junit.Assert;
+import pages.HomePage;
 import pages.loginPage;
 
 public class GoogleSearchSteps extends BaseSteps {
@@ -28,6 +30,12 @@ public class GoogleSearchSteps extends BaseSteps {
         loginPage loginPage= new loginPage(getDriver());
         String appUserName= CucumberHooks.envConfig.readTestDataByKey( userName);
         String appUserPassword= CucumberHooks.envConfig.readTestDataByKey( password);
-        System.out.println(loginPage.validateLoginPageTitle(appUserName,appUserPassword));
+        Assert.assertEquals( loginPage.validateLoginPageTitle(appUserName,appUserPassword), "Let's Shop");
+    }
+
+    @And( "verify user is on HomePage" )
+    public void verifyUserIsOnHomePage(){
+        HomePage homePage= new HomePage( getDriver());
+        Assert.assertTrue(homePage.verifyUserIsOnHomePage().toLowerCase().contains( "home"));
     }
 }

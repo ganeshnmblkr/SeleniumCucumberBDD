@@ -15,7 +15,7 @@ public class DriverFactory {
     ThreadLocal<WebDriver> driver = new ThreadLocal<WebDriver>();
 
     public WebDriver getDriver() {
-        System.out.println("Driver Instance "+driver.get());
+//        System.out.println("Driver Instance "+driver.get());
         return driver.get();
     }
 

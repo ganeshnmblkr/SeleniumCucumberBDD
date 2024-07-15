@@ -2,6 +2,7 @@ Feature: Google Search Automation
   @smoke
   Scenario: Google Search Automation
     Given user logins to the application using "Valid User Name" and "Valid Password"
+    And verify user is on HomePage
     When user type search
     Then user should get the result
 

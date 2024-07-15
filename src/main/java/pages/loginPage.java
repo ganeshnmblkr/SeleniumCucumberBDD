@@ -35,6 +35,7 @@ public class loginPage extends BasePage {
         DriverHelper.clearAndSendKeys( driver,userID,strUserID );
         DriverHelper.clearAndSendKeys( driver,userPassword,password );
         DriverHelper.click( driver,loginButton);
+//        DriverHelper.readTextFromElement( driver, homePage.HomePageElement)
         return driver.getTitle();
    }
 
