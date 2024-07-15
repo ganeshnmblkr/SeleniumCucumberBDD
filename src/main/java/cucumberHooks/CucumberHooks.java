@@ -12,7 +12,7 @@ public class CucumberHooks {
 
     BrowserFactory browserFactor = new BrowserFactory();
     public WebDriver driver=null;
-    public environmentConfig envConfig=new environmentConfig();
+    public static environmentConfig envConfig=new environmentConfig();
     @Before
     public void launchApplication() throws Exception {
         envConfig.setEnvironmentDetails();
@@ -23,7 +23,7 @@ public class CucumberHooks {
         driver = DriverFactory.getInstance().getDriver();
         driver.manage().window().maximize();
         System.out.println("appURL:- "+appURL);
-        System.out.println("UserName:- "+envConfig.readTestDataByKey( envConfig.getTestDataEnv() , "Valid User Name" ));
+        System.out.println("UserName:- "+envConfig.readTestDataByKey( "Valid User Name" ));
         driver.get(appURL);
     }
     @After

@@ -26,9 +26,9 @@ public class environmentConfig {
         envTestData = yamlReader("TestData","TestData.yaml");
     }
 
-    public String readTestDataByKey(String testDataEnv,String keyName){
+    public String readTestDataByKey(String keyName){
         if (keyName!=null ){
-            return  envTestData.get(keyName).get( testDataEnv );
+            return  envTestData.get(keyName).get( this.testDataEnv );
         }else{
             return "inCorrect Key";
         }
