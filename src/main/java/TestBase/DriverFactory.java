@@ -1,22 +1,20 @@
 package TestBase;
 
+import lombok.Getter;
 import org.openqa.selenium.WebDriver;
 
 public class DriverFactory {
 
     private DriverFactory(){
     }
+    @Getter
     private static DriverFactory instance = new DriverFactory();
-
-    public static DriverFactory getInstance() {
-        return instance;
-    }
 
     ThreadLocal<WebDriver> driver = new ThreadLocal<WebDriver>();
 
-    public WebDriver getDriver() {
+    public synchronized WebDriver getDriver() {
 //        System.out.println("Driver Instance "+driver.get());
-        return driver.get();
+        return this.driver.get();
     }
 
     public void setDriver( WebDriver driverParam ) {
@@ -24,6 +22,7 @@ public class DriverFactory {
     }
 
     public void closeBrowser() {
+        System.out.println("Driver Instance "+driver.get());
         driver.get().quit();
         driver.remove();
     }

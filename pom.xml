@@ -95,6 +95,14 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>2.22.1</version>
                 <configuration>
+                    <systemPropertyVariables>
+                        <systeminfo.os>${os.name}</systeminfo.os>
+                        <systeminfo.os_version>${os.version}</systeminfo.os_version>
+                        <systeminfo.user>${user.name}</systeminfo.user>
+                    </systemPropertyVariables>
+                    <includes>
+                        <include>**/RunTest.java</include>
+                    </includes>
                     <properties>
                         <property>
                             <name>dataproviderthreadcount</name>
