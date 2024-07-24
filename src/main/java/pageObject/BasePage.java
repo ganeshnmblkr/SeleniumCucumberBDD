@@ -1,12 +1,13 @@
-package pages;
+package pageObject;
 
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.PageFactory;
 
 public class BasePage {
     protected WebDriver driver;
 //    HomePage homePage;
     public BasePage(WebDriver driver){
         this.driver=driver;
-//        homePage=new HomePage( driver );
+        PageFactory.initElements( driver,this );
     }
 }

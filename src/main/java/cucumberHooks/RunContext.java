@@ -10,10 +10,6 @@ import java.util.Map;
 public class RunContext {
     public static Map<Integer, ScenarioContext> scenarioContextMap = new HashMap<>();
 
-    public static ScenarioContext getScenarioContext( WebDriver driver ){
-        return scenarioContextMap.get( driver.hashCode() );
-    }
-
     public static WebElement getWebElement(WebDriver driver,String elementLocatorString){
         Field field=null;
         WebElement elementLocator=null;
@@ -28,4 +24,8 @@ public class RunContext {
         }
         return elementLocator;
     }
+    public static ScenarioContext getScenarioContext( WebDriver driver ){
+        return scenarioContextMap.get( driver.hashCode() );
+    }
+
 }

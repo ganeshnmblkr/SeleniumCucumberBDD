@@ -1,13 +1,28 @@
 package StepDefinitions;
 
+import TestBase.DriverFactory;
 import cucumberHooks.CucumberHooks;
-import io.cucumber.java.Scenario;
-import io.cucumber.java.en.*;
+import cucumberHooks.RunContext;
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 import org.junit.Assert;
-import pages.HomePage;
-import pages.loginPage;
+import pageObject.HomePage;
+import pageObject.LoginPage;
 
 public class GoogleSearchSteps extends BaseSteps {
+    private RunContext runContext;
+
+    public GoogleSearchSteps(RunContext runContext){
+        this.runContext=runContext;
+    }
+    public GoogleSearchSteps(){
+    }
+
+    @Given("^I am the \"([\\w\\s&]+)\" Page$" )
+    public void userNavigatesToPage(String pageName){
+        navigateToPage ( pageName );
+    }
     @Given("user opens browser")
     public void user_opens_browser() {
         System.out.println("Driver Instance user opens browser"+getDriver());
@@ -30,13 +45,20 @@ public class GoogleSearchSteps extends BaseSteps {
     }
     @Given( "^user logins to the application using \"([\\w\\s&]+)\" and \"([\\w\\s&]+)\" and \"([\\w\\s&]+)\"$")
     public void loginToApplication(String userName,String password,String scenarioName){
-        System.out.println(scenarioName+" Given Driver Instance "+getDriver());
-        loginPage loginPage= new loginPage(getDriver());
-        String appUserName= CucumberHooks.envConfig.readTestDataByKey( userName);
-        String appUserPassword= CucumberHooks.envConfig.readTestDataByKey( password);
+        LoginPage loginPage = new LoginPage ( getDriver());
+        String appUserName= CucumberHooks.envConfig.readTestDataByKey(userName);
+        String appUserPassword= CucumberHooks.envConfig.readTestDataByKey(password);
         loginPage.validateLoginPageTitle(appUserName,appUserPassword);
     }
 
+    @Given( "^user login to the application using \"([\\w\\s&]+)\" and \"([\\w\\s&]+)\"$")
+    public void userLogsIntoApplication(String userName,String password){
+        LoginPage loginPage=(LoginPage)RunContext.getScenarioContext
+                (DriverFactory.getInstance().getDriver()).getPageObject();
+        String appUserName= CucumberHooks.envConfig.readTestDataByKey(userName);
+        String appUserPassword= CucumberHooks.envConfig.readTestDataByKey(password);
+        loginPage.validateLoginPageTitle(appUserName,appUserPassword);
+    }
 
     @When("^verify user is on HomePage \"([\\w\\s&]+)\"$" )
     public void verifyUserIsOnHomePage(String scenarioName){
@@ -47,7 +69,7 @@ public class GoogleSearchSteps extends BaseSteps {
     @Then( "^user signouts from portal \"([\\w\\s&]+)\"$")
     public void userSignoutFromPortal(String scenarioName){
         System.out.println(scenarioName + "Then Driver Instance "+getDriver());
-        loginPage loginPage= new loginPage(getDriver());
+        LoginPage loginPage= new LoginPage(getDriver());
         loginPage.signOutFromPortal();
     }
     @Then( "^user signouts \"([\\w\\s&]+)\"$")
@@ -57,7 +79,7 @@ public class GoogleSearchSteps extends BaseSteps {
         Thread.sleep( 2000 );
         }catch (Exception e){
         }
-        loginPage loginPage= new loginPage(getDriver());
+        LoginPage loginPage= new LoginPage(getDriver());
         loginPage.signOutFromPortal();
     }
 }
