@@ -20,11 +20,9 @@ public class CucumberHooks {
         String browser = EnvironmentProperties.getEnvironmentProperties("browser");
         String appURL =envConfig.getTestEnvURL();
         DriverFactory.getInstance().setDriver( browserFactor.createBrowserInstance( browser ) );
-        driver = DriverFactory.getInstance().getDriver();
-        driver.manage().window().maximize();
-        System.out.println("appURL:- "+appURL);
-        System.out.println("UserName:- "+envConfig.readTestDataByKey( "Valid User Name" ));
-        driver.get(appURL);
+        this.driver = DriverFactory.getInstance().getDriver();
+        this.driver.manage().window().maximize();
+        this.driver.get(appURL);
     }
     @After
     public void tearDown() {

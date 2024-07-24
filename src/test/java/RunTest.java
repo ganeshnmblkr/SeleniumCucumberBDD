@@ -8,6 +8,7 @@ import org.testng.annotations.DataProvider;
 @CucumberOptions(features="src/test/resources/Features",
         glue={ "StepDefinitions" , "cucumberHooks" },
         monochrome = true,
+//        tags = "@smoke",
 plugin ={"pretty","html:target/Reports/HtmlReports.html",
 "json:target/Reports/JSONreports.json","junit:target/Reports/XMLreports.xml"})
 public class RunTest  extends AbstractTestNGCucumberTests {

@@ -6,6 +6,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import java.sql.Driver;
+
 public class loginPage extends BasePage {
 
    public  loginPage(WebDriver driver){
@@ -29,14 +31,19 @@ public class loginPage extends BasePage {
     @FindBy(id="login")
     public WebElement loginButton;
 
+    @FindBy(xpath ="//button[@class=\"btn btn-custom\" and contains(text(),\" Sign Out \")]")
+    public WebElement logoutButton;
 
-    public String validateLoginPageTitle(String strUserID,String password){
-//        DriverHelper.click( driver,HomePageloginButton);
+
+    public void validateLoginPageTitle(String strUserID,String password){
         DriverHelper.clearAndSendKeys( driver,userID,strUserID );
         DriverHelper.clearAndSendKeys( driver,userPassword,password );
         DriverHelper.click( driver,loginButton);
-        return driver.getTitle();
+        System.out.println("user logs in successfully ");
    }
 
+   public void signOutFromPortal(){
+       DriverHelper.click( driver,logoutButton);
+   }
 
 }

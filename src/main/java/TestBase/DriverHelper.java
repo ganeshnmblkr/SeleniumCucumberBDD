@@ -25,4 +25,7 @@ public class DriverHelper {
         JavascriptExecutor js= (JavascriptExecutor) webDriver;
         js.executeScript( "arguments[0].click()",element );
     }
+    public static String readTextFromElement( final WebDriver webDriver, final WebElement element){
+        return new WebDriverWait( webDriver, Duration.ofSeconds(20)).until( ExpectedConditions.visibilityOf( element )).getText();
+    }
 }
